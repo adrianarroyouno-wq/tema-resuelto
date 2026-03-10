@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tema Resuelto</title>
+
+  <style>
+    :root{
+      --bg:#0b0f19;
+      --card:#121a2a;
+      --muted:#9aa4b2;
+      --text:#e7eefc;
+      --line:rgba(255,255,255,.08);
+      --accent:#3b82f6;
+      --ok:#10b981;
+      --err:#ef4444;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(59,130,246,.25), transparent 60%),
+                  radial-gradient(1200px 600px at 90% 0%, rgba(16,185,129,.15), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+    }
+    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(18,26,42,.7);
+      backdrop-filter: blur(10px);
+    }
+    .brand h1{margin:0;font-size:22px;letter-spacing:.2px}
+    .brand p{margin:4px 0 0;color:var(--muted);font-size:13px}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03);
+      color:var(--muted);font-size:13px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:16px;
+      margin-top:16px;
+    }
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
+    .card{
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(18,26,42,.75);
+      backdrop-filter: blur(10px);
+      padding:16px;
+    }
+    .card h2{margin:0 0 10px;font-size:16px}
+    .muted{color:var(--muted);font-size:13px}
+    label{display:block;font-size:12px;color:var(--muted);margin-top:10px}
+    input, select, textarea{
+      width:100%;
+      margin-top:6px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      outline:none;
+    }
+    textarea{min-height:92px;resize:vertical}
+    input::placeholder, textarea::placeholder{color:rgba(154,164,178,.65)}
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width: 520px){ .row2{grid-template-columns:1fr} }
+    .btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    button{
+      border:none;
+      border-radius:12px;
+      padding:10px 12px;
+      cursor:pointer;
+      color:white;
+      font-weight:700;
+    }
+    .btn-primary{background:linear-gradient(135deg, var(--accent), #2563eb)}
+    .btn-ghost{
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--line);
+      color:var(--text);
+      font-weight:700;
+    }
+    .btn-danger{
+      background:rgba(239,68,68,.15);
+      border:1px solid rgba(239,68,68,.35);
+      color:#fecaca;
+    }
+    .msg{margin:10px 0 0;font-size:13px}
+    .ok{color:var(--ok)}
+    .err{color:var(--err)}
+    .toolbar{
+      display:flex;gap:10px;flex-wrap:wrap;align-items:end;
+      border-top:1px solid var(--line);
+      padding-top:12px;margin-top:12px;
+    }
+    .toolbar .field{flex:1;min-width:200px}
+    .count{margin-left:auto;color:var(--muted);font-size:12px}
+    .list{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:12px;
+      margin-top:12px;
+    }
+    @media (max-width: 900px){ .list{grid-template-columns:1fr} }
+    .svc{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+      background:rgba(255,255,255,.03);
+    }
+    .svc .title{
+      display:flex;justify-content:space-between;gap:10px;align-items:flex-start;
+      margin:0 0 6px;
+      font-size:15px;
+    }
+    .price{font-weight:900}
+    .badge{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:6px 10px;border-radius:999px;
+      background:rgba(59,130,246,.12);
+      border:1px solid rgba(59,130,246,.25);
+      color:#bcd6ff;font-size:12px;
+    }
+    .svc p{margin:0 0 10px;color:rgba(231,238,252,.9)}
+    .svc .meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+    .svc .meta span{color:var(--muted);font-size:12px}
+    .svc .actions{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    a.whatsapp{
+      text-decoration:none;
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 12px;border-radius:12px;
+      background:rgba(16,185,129,.12);
+      border:1px solid rgba(16,185,129,.28);
+      color:#a7f3d0;font-weight:800;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <h1>Tema Resuelto</h1>
+        <p>Marketplace de servicios para resolver problemas reales</p>
+      </div>
+      <div class="pill" id="statusPill">🔌 Conectando…</div>
+    </div>
+
+    <div class="grid">
+      <!-- FORM -->
+      <div class="card">
+        <h2 id="formTitle">Publicar un servicio</h2>
+
+        <input id="editingId" type="hidden" />
+
+        <div class="row2">
+          <div>
+            <label>Título</label>
+            <input id="title" placeholder="Ej: Cambio de canilla" />
+          </div>
+          <div>
+            <label>Precio</label>
+            <input id="price" type="number" placeholder="Ej: 12000" />
+          </div>
+        </div>
+
+        <label>Descripción</label>
+        <textarea id="description" placeholder="Contá qué incluye el trabajo, zona, tiempos, etc."></textarea>
+
+        <div class="row2">
+          <div>
+            <label>Categoría</label>
+            <select id="categorySelect"></select>
+          </div>
+          <div>
+            <label>WhatsApp (opcional)</label>
+            <input id="whatsapp" placeholder="Ej: 5492641234567" />
+            <div class="muted" style="margin-top:6px">Formato: código país + número (sin +, sin espacios).</div>
+          </div>
+        </div>
+
+        <div class="btns">
+          <button class="btn-primary" id="btnSave">Publicar</button>
+          <button class="btn-ghost" id="btnClear" type="button">Limpiar</button>
+        </div>
+
+        <p class="msg" id="msg"></p>
+      </div>
+
+      <!-- LIST -->
+      <div class="card">
+        <h2>Explorar servicios</h2>
+
+        <div class="toolbar">
+          <div class="field">
+            <label>Buscar</label>
+            <input id="q" placeholder="Ej: canilla, plomería, electricidad…" />
+          </div>
+          <div class="field">
+            <label>Filtrar por categoría</label>
+            <select id="filterCategory"></select>
+          </div>
+          <button class="btn-ghost" id="btnReload" type="button">Recargar</button>
+          <div class="count" id="count"></div>
+        </div>
+
+        <div class="list" id="servicesList"></div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const API_BASE = "http://localhost:3000";
+  const $ = (id) => document.getElementById(id);
+
+  let allServices = [];
+  let categories = [];
+
+  function setStatus(ok, text){
+    const el = $("statusPill");
+    el.textContent = text;
+    el.style.color = ok ? "#a7f3d0" : "#fecaca";
+    el.style.borderColor = ok ? "rgba(16,185,129,.28)" : "rgba(239,68,68,.28)";
+    el.style.background = ok ? "rgba(16,185,129,.12)" : "rgba(239,68,68,.12)";
+  }
+
+  function cleanPhone(v){
+    return (v || "").toString().replace(/[^\d]/g, "");
+  }
+
+  function whatsappLinkFromService(service){
+    const phone = cleanPhone(service?.whatsapp);
+    if(!phone) return null;
+    const msg = encodeURIComponent(`Hola! Vi tu servicio "${service.title}" en Tema Resuelto. ¿Me pasás más info?`);
+    return `https://wa.me/${phone}?text=${msg}`;
+  }
+
+  async function apiPing(){
+    try{
+      const res = await fetch(`${API_BASE}/services`);
+      const json = await res.json();
+      if(json?.error) throw new Error(json.error.message || "error");
+      setStatus(true, "✅ Conectado");
+      return true;
+    }catch(e){
+      setStatus(false, "⚠️ Backend apagado");
+      return false;
+    }
+  }
+
+  async function loadCategories() {
+    const res = await fetch(`${API_BASE}/categories`);
+    const json = await res.json();
+    if (json.error) throw new Error(json.error.message || "Error categories");
+    categories = json.data || [];
+
+    const sel = $("categorySelect");
+    sel.innerHTML = "";
+    categories.forEach(c => {
+      const opt = document.createElement("option");
+      opt.value = c.id;
+      opt.textContent = c.name;
+      sel.appendChild(opt);
+    });
+
+    const f = $("filterCategory");
+    f.innerHTML = `<option value="">Todas</option>`;
+    categories.forEach(c => {
+      const opt = document.createElement("option");
+      opt.value = String(c.id);
+      opt.textContent = c.name;
+      f.appendChild(opt);
+    });
+  }
+
+  async function loadServices() {
+    const res = await fetch(`${API_BASE}/services`);
+    const json = await res.json();
+    if (json.error) throw new Error(json.error.message || "Error services");
+    allServices = json.data || [];
+    render();
+  }
+
+  function getCategoryName(service){
+    return service?.categories?.name ?? "-";
+  }
+
+  function render(){
+    const q = $("q").value.trim().toLowerCase();
+    const catId = $("filterCategory").value;
+
+    let filtered = [...allServices];
+
+    if(catId){
+      filtered = filtered.filter(s => String(s.category_id) === String(catId));
+    }
+
+    if(q){
+      filtered = filtered.filter(s => {
+        const text = `${s.title} ${s.description} ${getCategoryName(s)}`.toLowerCase();
+        return text.includes(q);
+      });
+    }
+
+    $("count").textContent = `${filtered.length} resultado(s)`;
+
+    const list = $("servicesList");
+    list.innerHTML = "";
+
+    if(filtered.length === 0){
+      list.innerHTML = `<div class="svc"><span class="muted">No hay resultados con esos filtros.</span></div>`;
+      return;
+    }
+
+    filtered.forEach(s => {
+      const div = document.createElement("div");
+      div.className = "svc";
+      const created = new Date(s.created_at).toLocaleString("es-AR");
+      const badge = getCategoryName(s);
+      const wa = whatsappLinkFromService(s);
+
+      div.innerHTML = `
+        <div class="title">
+          <div>
+            <div style="font-weight:900">${s.title}</div>
+            <div style="margin-top:6px"><span class="badge">🏷️ ${badge}</span></div>
+          </div>
+          <div class="price">$${Number(s.price || 0).toLocaleString("es-AR")}</div>
+        </div>
+
+        <p>${s.description || ""}</p>
+
+        <div class="meta">
+          <span>🕒 ${created}</span>
+          <span>🧾 ID #${s.id}</span>
+        </div>
+
+        <div class="actions">
+          ${wa ? `<a class="whatsapp" href="${wa}" target="_blank" rel="noopener">💬 WhatsApp</a>` : `<span class="muted">Sin WhatsApp</span>`}
+          <button class="btn-ghost" data-edit="${s.id}">✏️ Editar</button>
+          <button class="btn-danger" data-del="${s.id}">🗑 Eliminar</button>
+        </div>
+      `;
+
+      list.appendChild(div);
+    });
+
+    // Bind botones editar/eliminar
+    document.querySelectorAll("[data-edit]").forEach(btn => {
+      btn.addEventListener("click", () => startEdit(Number(btn.dataset.edit)));
+    });
+    document.querySelectorAll("[data-del]").forEach(btn => {
+      btn.addEventListener("click", () => deleteService(Number(btn.dataset.del)));
+    });
+  }
+
+  function setFormMode(editing, service){
+    $("editingId").value = editing ? String(service.id) : "";
+    $("formTitle").textContent = editing ? `Editar servicio #${service.id}` : "Publicar un servicio";
+    $("btnSave").textContent = editing ? "Guardar cambios" : "Publicar";
+  }
+
+  function fillForm(service){
+    $("title").value = service.title || "";
+    $("description").value = service.description || "";
+    $("price").value = service.price ?? "";
+    $("whatsapp").value = service.whatsapp || "";
+    $("categorySelect").value = String(service.category_id);
+  }
+
+  function clearForm(){
+    setFormMode(false, {});
+    $("title").value = "";
+    $("description").value = "";
+    $("price").value = "";
+    $("whatsapp").value = "";
+    $("msg").textContent = "";
+    $("msg").className = "msg";
+  }
+
+  function startEdit(id){
+    const s = allServices.find(x => x.id === id);
+    if(!s) return;
+    setFormMode(true, s);
+    fillForm(s);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  async function createOrUpdate(){
+    const msg = $("msg");
+    msg.textContent = "";
+    msg.className = "msg";
+
+    const title = $("title").value.trim();
+    const description = $("description").value.trim();
+    const price = Number($("price").value);
+    const category_id = Number($("categorySelect").value);
+    const whatsapp = cleanPhone($("whatsapp").value.trim());
+
+    if (!title || !description || !price || !category_id) {
+      msg.textContent = "Completá título, descripción, precio y categoría.";
+      msg.classList.add("err");
+      return;
+    }
+
+    if (whatsapp && (whatsapp.length < 10 || whatsapp.length > 15)) {
+      msg.textContent = "WhatsApp inválido. Usá solo números (10 a 15 dígitos). Ej: 5492641234567";
+      msg.classList.add("err");
+      return;
+    }
+
+    const payload = { title, description, price, category_id, whatsapp: whatsapp || null };
+
+    const editingId = $("editingId").value;
+    const url = editingId ? `${API_BASE}/services/${editingId}` : `${API_BASE}/services`;
+    const method = editingId ? "PUT" : "POST";
+
+    const res = await fetch(url, {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    const json = await res.json();
+
+    if (json.error) {
+      msg.textContent = `Error: ${json.error.message || "No se pudo guardar"}`;
+      msg.classList.add("err");
+      return;
+    }
+
+    msg.textContent = editingId ? "✅ Cambios guardados." : "✅ Servicio publicado.";
+    msg.classList.add("ok");
+
+    clearForm();
+    await loadServices();
+  }
+
+  async function deleteService(id){
+    if(!confirm(`¿Eliminar el servicio #${id}?`)) return;
+
+    const res = await fetch(`${API_BASE}/services/${id}`, { method: "DELETE" });
+    const json = await res.json();
+
+    if (!json.success) {
+      alert(`No se pudo eliminar: ${json?.error?.message || "Error"}`);
+      return;
+    }
+
+    await loadServices();
+  }
+
+  $("btnSave").addEventListener("click", createOrUpdate);
+  $("btnReload").addEventListener("click", loadServices);
+  $("btnClear").addEventListener("click", clearForm);
+
+  $("q").addEventListener("input", render);
+  $("filterCategory").addEventListener("change", render);
+
+  (async function init(){
+    const ok = await apiPing();
+    if(!ok) return;
+    await loadCategories();
+    await loadServices();
+  })();
+</script>
+
+</body>
+</html>
